@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Setup Boxs - dashboard</title>
+		<link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml">
+		<link rel="stylesheet" href="modules/w3.css">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/nav.css">
+		<link rel="stylesheet" href="css/form.css">
+		<script src="scripts/index.js" type="module"></script>
+		<script src="modules/wfa.js" type="module"></script>
+		<style>
+			#instance-container > div {
+				border-bottom: 1px solid white;
+			}
+			#instance-container > div:last-child {
+				border-bottom: none;
+			}
+			@media screen and (width >= 440px) {
+				#vm-search {
+					max-width: calc(100% - 10px - 152px);
+				}
+			}
+			@media screen and (width <= 440px) {
+				#vm-search {
+					max-width: calc(100% - 10px - 47px);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Setup Boxs</h1>
+			<label for="navtoggle">&#9776;</label>
+			<input type="checkbox" id="navtoggle">
+			<nav id="navigation">
+				<a href="index.html" aria-current="page">Instances</a>
+				<a href="account.html">Account</a>
+				<a href="settings.html">Settings</a>
+				<a id="admin-link" aria-disabled="true" class="none">Admin</a>
+				<a href="login.html">Logout</a>
+			</nav>
+		</header>
+		<main>
+			<section>
+				<h2>Instances</h2>
+				<div class="w3-card w3-padding">
+					<div class="flex row nowrap" style="margin-top: 1em; justify-content: space-between;">
+						<form id="vm-search" role="search" class="flex row nowrap">
+							<svg role="img" aria-label="Search Instances"><use href="images/common/search.svg#symb"></use></svg>
+							<input type="search" id="search" class="w3-input w3-border" style="height: 1lh; max-width: fit-content;" aria-label="search instances by name">
+						</form>
+						<button type="button" id="instance-add" class="w3-button" aria-label="create new instance">
+							<span class="large" style="margin: 0;">Create Instance</span>
+							<svg class="small" style="height: 1lh; width: 1lh;" role="img" aria-label="Create New Instance"><use href="images/actions/instance/add.svg#symb"></use></svg>
+						</button>
+					</div>
+					<div>
+						<div class="w3-row w3-hide-small" style="border-bottom: 1px solid;">
+							<p class="w3-col l1 m2 w3-hide-small">ID</p>
+							<p class="w3-col l2 m3 w3-hide-small">Name</p>
+							<p class="w3-col l1 m2 w3-hide-small">Type</p>
+							<p class="w3-col l2 m3 w3-hide-small">Status</p>
+							<p class="w3-col l2 w3-hide-medium w3-hide-small">Host Name</p>
+							<p class="w3-col l2 w3-hide-medium w3-hide-small">Host Status</p>
+							<p class="w3-col l2 m2 w3-hide-small">Actions</p>
+						</div>
+						<div id="instance-container"></div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
+</html>
