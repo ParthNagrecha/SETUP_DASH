@@ -5,70 +5,67 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Setup Boxs - dashboard</title>
 		<link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml">
-		<link rel="stylesheet" href="modules/w3.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/nav.css">
-		<link rel="stylesheet" href="css/form.css">
+		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="scripts/index.js" type="module"></script>
 		<script src="modules/wfa.js" type="module"></script>
 		<style>
 			#instance-container > div {
-				border-bottom: 1px solid white;
+				border-bottom: 1px solid #ffffff;
 			}
 			#instance-container > div:last-child {
 				border-bottom: none;
 			}
-			@media screen and (width >= 440px) {
-				#vm-search {
-					max-width: calc(100% - 10px - 152px);
-				}
-			}
-			@media screen and (width <= 440px) {
-				#vm-search {
-					max-width: calc(100% - 10px - 47px);
-				}
-			}
 		</style>
 	</head>
-	<body>
-		<header>
-			<h1>Setup Boxs</h1>
-			<label for="navtoggle">&#9776;</label>
-			<input type="checkbox" id="navtoggle">
-			<nav id="navigation">
-				<a href="index.html" aria-current="page">Instances</a>
-				<a href="account.html">Account</a>
-				<a href="settings.html">Settings</a>
-				<a id="admin-link" aria-disabled="true" class="none">Admin</a>
-				<a href="login.html">Logout</a>
+	<body class="bg-gray-100 font-sans">
+		<header class="bg-orange-600 text-white p-4 flex items-center justify-between">
+			<h1 class="text-lg font-semibold">Setup Boxs</h1>
+			<label for="navtoggle" class="cursor-pointer text-2xl">&#9776;</label>
+			<input type="checkbox" id="navtoggle" class="hidden">
+			<nav id="navigation" class="hidden md:flex gap-4">
+				<a href="index.html" class="text-white hover:underline" aria-current="page">Instances</a>
+				<a href="account.html" class="text-white hover:underline">Account</a>
+				<a href="settings.html" class="text-white hover:underline">Settings</a>
+				<a id="admin-link" aria-disabled="true" class="text-white opacity-50 cursor-not-allowed">Admin</a>
+				<a href="login.html" class="text-white hover:underline">Logout</a>
 			</nav>
 		</header>
-		<main>
+		<main class="p-6">
 			<section>
-				<h2>Instances</h2>
-				<div class="w3-card w3-padding">
-					<div class="flex row nowrap" style="margin-top: 1em; justify-content: space-between;">
-						<form id="vm-search" role="search" class="flex row nowrap">
-							<svg role="img" aria-label="Search Instances"><use href="images/common/search.svg#symb"></use></svg>
-							<input type="search" id="search" class="w3-input w3-border" style="height: 1lh; max-width: fit-content;" aria-label="search instances by name">
+				<h2 class="text-xl font-bold mb-6">Instances</h2>
+				<div class="bg-white shadow-md rounded-md p-4">
+					<div class="flex items-center justify-between mb-4">
+						<!-- Search Form -->
+						<form id="vm-search" role="search" class="flex items-center">
+							<svg role="img" aria-label="Search Instances" class="w-5 h-5 text-gray-500">
+								<use href="images/common/search.svg#symb"></use>
+							</svg>
+							<input type="search" id="search" class="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring focus:ring-blue-500" placeholder="Search instances by name" aria-label="Search instances by name">
 						</form>
-						<button type="button" id="instance-add" class="w3-button" aria-label="create new instance">
-							<span class="large" style="margin: 0;">Create Instance</span>
-							<svg class="small" style="height: 1lh; width: 1lh;" role="img" aria-label="Create New Instance"><use href="images/actions/instance/add.svg#symb"></use></svg>
+						
+						<!-- Add Instance Button -->
+						<button type="button" id="instance-add" class="flex items-center gap-2 bg-orange-600 text-white py-2 px-4 rounded-md hover:bg-orange-700" aria-label="Create new instance">
+							<span>Create Instance</span>
+							<svg class="w-5 h-5" role="img" aria-label="Create New Instance">
+								<use href="images/actions/instance/add.svg#symb"></use>
+							</svg>
 						</button>
 					</div>
-					<div>
-						<div class="w3-row w3-hide-small" style="border-bottom: 1px solid;">
-							<p class="w3-col l1 m2 w3-hide-small">ID</p>
-							<p class="w3-col l2 m3 w3-hide-small">Name</p>
-							<p class="w3-col l1 m2 w3-hide-small">Type</p>
-							<p class="w3-col l2 m3 w3-hide-small">Status</p>
-							<p class="w3-col l2 w3-hide-medium w3-hide-small">Host Name</p>
-							<p class="w3-col l2 w3-hide-medium w3-hide-small">Host Status</p>
-							<p class="w3-col l2 m2 w3-hide-small">Actions</p>
-						</div>
-						<div id="instance-container"></div>
+
+					<!-- Table Header -->
+					<div class="hidden md:grid grid-cols-7 border-b border-gray-300 pb-2 mb-2 text-sm font-semibold text-gray-700">
+						<p class="col-span-1">ID</p>
+						<p class="col-span-2">Name</p>
+						<p class="col-span-1">Type</p>
+						<p class="col-span-1">Status</p>
+						<p class="col-span-1 hidden lg:block">Host Name</p>
+						<p class="col-span-1 hidden lg:block">Host Status</p>
+						<p class="col-span-1">Actions</p>
+					</div>
+
+					<!-- Instance Container -->
+					<div id="instance-container" class="divide-y divide-gray-300">
+						<!-- Instances will be dynamically added here -->
 					</div>
 				</div>
 			</section>

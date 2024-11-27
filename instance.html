@@ -5,11 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Setup Boxs - dashboard</title>
 		<link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml">
-		<link rel="stylesheet" href="modules/w3.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/nav.css">
-		<link rel="stylesheet" href="css/form.css">
+		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="scripts/instance.js" type="module"></script>
 		<script src="scripts/draggable.js" type="module"></script>
 		<script src="modules/Sortable.min.js"></script>
@@ -23,69 +19,78 @@
 			}
 		</style>
 	</head>
-	<body>
-		<header>
-			<h1>Setup Boxs</h1>
-			<label for="navtoggle">&#9776;</label>
-			<input type="checkbox" id="navtoggle">
-			<nav id="navigation">
-				<a href="index.html" aria-current="page">Instances</a>
-				<a href="account.html">Account</a>
-				<a href="settings.html">Settings</a>
-				<a id="admin-link" aria-disabled="true" class="none">Admin</a>
-				<a href="login.html">Logout</a>
+	<body class="bg-gray-100 font-sans">
+		<header class="bg-orange-600 text-white p-4 flex items-center justify-between">
+			<h1 class="text-lg font-semibold">Setup Boxs</h1>
+			<label for="navtoggle" class="cursor-pointer text-2xl">&#9776;</label>
+			<input type="checkbox" id="navtoggle" class="hidden">
+			<nav id="navigation" class="hidden md:flex gap-4">
+				<a href="index.html" class="text-white hover:underline" aria-current="page">Instances</a>
+				<a href="account.html" class="text-white hover:underline">Account</a>
+				<a href="settings.html" class="text-white hover:underline">Settings</a>
+				<a id="admin-link" aria-disabled="true" class="text-white opacity-50 cursor-not-allowed">Admin</a>
+				<a href="login.html" class="text-white hover:underline">Logout</a>
 			</nav>
 		</header>
-		<main>
+		<main class="p-6">
 			<section>
-				<h2 id="name"><a href="index.html">Instances</a> / %{vmname}</h2>
+				<h2 id="name" class="text-xl font-bold mb-4">
+					<a href="index.html" class="text-orange-600 hover:underline">Instances</a> / %{vmname}
+				</h2>
 				<form>
-					<fieldset class="w3-card w3-padding">
-						<legend>Resources</legend>
-						<div class="input-grid" id="resources" style="grid-template-columns: auto auto auto 1fr;"></div>
+					<!-- Resources -->
+					<fieldset class="bg-white shadow-md rounded-md p-4 mb-6">
+						<legend class="text-lg font-semibold mb-2">Resources</legend>
+						<div class="grid gap-4" id="resources" style="grid-template-columns: auto auto auto 1fr;"></div>
 					</fieldset>
-					<fieldset class="w3-card w3-padding">
-						<legend>Disks</legend>
-						<div class="input-grid" id="disks" style="grid-template-columns: auto auto 1fr auto;"></div>
-						<div class="w3-container w3-center">
-							<button type="button" id="disk-add" class="w3-button" aria-label="Add New Disk">
-								<span class="large" style="margin: 0;">Add Disk</span>
-								<svg class="small" role="img" style="height: 1lh; width: 1lh;" aria-label="Add New Disk"><use href="images/actions/disk/add-disk.svg#symb"></use></svg>
+
+					<!-- Disks -->
+					<fieldset class="bg-white shadow-md rounded-md p-4 mb-6">
+						<legend class="text-lg font-semibold mb-2">Disks</legend>
+						<div class="grid gap-4" id="disks" style="grid-template-columns: auto auto 1fr auto;"></div>
+						<div class="text-center">
+							<button type="button" id="disk-add" class="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700" aria-label="Add New Disk">
+								Add Disk
 							</button>
-							<button type="button" id="cd-add" class="w3-button none" aria-label="Add New CD">
-								<span class="large" style="margin: 0;">Add CD</span>
-								<svg class="small" role="img" style="height: 1lh; width: 1lh;" aria-label="Add New CDROM"><use href="images/actions/disk/add-cd.svg#symb"></use></svg>
-							</button>
-						</div>
-					</fieldset>
-					<fieldset class="w3-card w3-padding">
-						<legend>Network Interfaces</legend>
-						<div class="input-grid" id="networks" style="grid-template-columns: auto auto 1fr auto;"></div>
-						<div class="w3-container w3-center">
-							<button type="button" id="network-add" class="w3-button" aria-label="Add New Network Interface">
-								<span class="large" style="margin: 0;">Add Network</span>
-								<svg class="small" role="img" style="height: 1lh; width: 1lh;" aria-label="Add New Network Interface"><use href="images/actions/network/add.svg#symb"></use></svg>
+							<button type="button" id="cd-add" class="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700 hidden" aria-label="Add New CD">
+								Add CD
 							</button>
 						</div>
 					</fieldset>
-					<fieldset class="w3-card w3-padding none" id="devices-card">
-						<legend>PCIe Devices</legend>
-						<div class="input-grid" id="devices" style="grid-template-columns: auto 1fr auto;"></div>
-						<div class="w3-container w3-center">
-							<button type="button" id="device-add" class="w3-button" aria-label="Add New PCIe Device">
-								<span class="large" style="margin: 0;">Add Device</span>
-								<svg class="small" role="img" style="height: 1lh; width: 1lh;" aria-label="Add New PCIe Device"><use href="images/actions/device/add.svg#symb"></use></svg>
+
+					<!-- Network Interfaces -->
+					<fieldset class="bg-white shadow-md rounded-md p-4 mb-6">
+						<legend class="text-lg font-semibold mb-2">Network Interfaces</legend>
+						<div class="grid gap-4" id="networks" style="grid-template-columns: auto auto 1fr auto;"></div>
+						<div class="text-center">
+							<button type="button" id="network-add" class="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700" aria-label="Add New Network Interface">
+								Add Network
 							</button>
 						</div>
 					</fieldset>
-					<fieldset class="w3-card w3-padding none" id="boot-card">
-						<legend>Boot Order</legend>
+
+					<!-- PCIe Devices -->
+					<fieldset class="bg-white shadow-md rounded-md p-4 mb-6 hidden" id="devices-card">
+						<legend class="text-lg font-semibold mb-2">PCIe Devices</legend>
+						<div class="grid gap-4" id="devices" style="grid-template-columns: auto 1fr auto;"></div>
+						<div class="text-center">
+							<button type="button" id="device-add" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" aria-label="Add New PCIe Device">
+								Add Device
+							</button>
+						</div>
+					</fieldset>
+
+					<!-- Boot Order -->
+					<fieldset class="bg-white shadow-md rounded-md p-4 mb-6 hidden" id="boot-card">
+						<legend class="text-lg font-semibold mb-2">Boot Order</legend>
 						<draggable-container id="enabled"></draggable-container>
-						<hr style="padding: 0; margin: 0;">
+						<hr class="border-t border-gray-300 my-4">
 						<draggable-container id="disabled"></draggable-container>
 					</fieldset>
-					<div class="w3-container w3-center" id="form-actions">
-						<button class="w3-button w3-margin" id="exit" type="button">EXIT</button>
+
+					<!-- Form Actions -->
+					<div class="text-center">
+						<button type="button" id="exit" class="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">EXIT</button>
 					</div>
 				</form>
 			</section>

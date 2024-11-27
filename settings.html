@@ -5,82 +5,90 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Setup Boxs - dashboard</title>
 		<link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml">
-		<link rel="stylesheet" href="modules/w3.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/nav.css">
-		<link rel="stylesheet" href="css/form.css">
-		<script src="scripts/settings.js" type="module"></script>
+		<script src="https://cdn.tailwindcss.com"></script>
 		<style>
-			legend {
-				margin-bottom: 25px;
-			}
-			label {
-				display: flex;
-				height: fit-content;
-				width: 100%;
-				align-items: center;
-				justify-content: left;
-				column-gap: 10px;
-			}
 			label + p {
 				margin-top: 5px;
 				margin-bottom: 25px;
 			}
 			p:last-child {
-				margin-bottom: 0px;
+				margin-bottom: 0;
 			}
 		</style>
 	</head>
-	<body>
-		<header>
-			<h1>Setup Boxs</h1>
-			<label for="navtoggle">&#9776;</label>
-			<input type="checkbox" id="navtoggle">
-			<nav id="navigation">
-				<a href="index.html">Instances</a>
-				<a href="account.html">Account</a>
-				<a href="settings.html" aria-current="page">Settings</a>
-				<a id="admin-link" aria-disabled="true" class="none">Admin</a>
-				<a href="login.html">Logout</a>
+	<body class="bg-gray-100 font-sans">
+		<header class="bg-orange-600 text-white p-4 flex items-center justify-between">
+			<h1 class="text-lg font-semibold">Setup Boxs</h1>
+			<label for="navtoggle" class="cursor-pointer text-2xl">&#9776;</label>
+			<input type="checkbox" id="navtoggle" class="hidden">
+			<nav id="navigation" class="hidden md:flex gap-4">
+				<a href="index.html" class="hover:underline">Instances</a>
+				<a href="account.html" class="hover:underline">Account</a>
+				<a href="settings.html" aria-current="page" class="hover:underline">Settings</a>
+				<a id="admin-link" aria-disabled="true" class="text-gray-400">Admin</a>
+				<a href="login.html" class="hover:underline">Logout</a>
 			</nav>
 		</header>
-		<main>
-			<h2>Settings</h2>
-			<form id = "settings">
-				<section class="w3-card w3-padding">
-					<h3>Synchronization Settings</h3>
+		<main class="p-6">
+			<h2 class="text-xl font-bold mb-6">Settings</h2>
+			<form id="settings">
+				<!-- Synchronization Settings -->
+				<section class="bg-white shadow-md rounded-md p-4 mb-6">
+					<h3 class="text-lg font-semibold mb-4">Synchronization Settings</h3>
 					<fieldset>
-						<legend>App Sync Method</legend>
-						<label><input class="w3-radio" type="radio" id="sync-always" name="sync-scheme" value="always" required>Always Sync</label>
-						<p>App will always periodically synchronize with Proxmox. High resource usage.</p>
-						<label><input class="w3-radio" type="radio" id="sync-hash" name="sync-scheme" value="hash" required>Check For Sync</label>
-						<p>App will periodically check for updates and synchronize only if needed. Medium resource usage.</p>
-						<label><input class="w3-radio" type="radio" id="sync-interrupt" name="sync-scheme" value="interrupt" required>Sync When Needed</label>
-						<p>App will react to changes and synchronize when changes are made. Low resource usage.</p>
+						<legend class="font-medium mb-6">App Sync Method</legend>
+						<label class="flex items-center gap-2 mb-1">
+							<input class="h-5 w-5 border-gray-300 rounded" type="radio" id="sync-always" name="sync-scheme" value="always" required>
+							<span>Always Sync</span>
+						</label>
+						<p class="text-sm text-gray-600">App will always periodically synchronize with Proxmox. High resource usage.</p>
+						<label class="flex items-center gap-2 mb-1">
+							<input class="h-5 w-5 border-gray-300 rounded" type="radio" id="sync-hash" name="sync-scheme" value="hash" required>
+							<span>Check For Sync</span>
+						</label>
+						<p class="text-sm text-gray-600">App will periodically check for updates and synchronize only if needed. Medium resource usage.</p>
+						<label class="flex items-center gap-2 mb-1">
+							<input class="h-5 w-5 border-gray-300 rounded" type="radio" id="sync-interrupt" name="sync-scheme" value="interrupt" required>
+							<span>Sync When Needed</span>
+						</label>
+						<p class="text-sm text-gray-600">App will react to changes and synchronize when changes are made. Low resource usage.</p>
 					</fieldset>
-					<fieldset>
-						<legend>App Sync Frequency</legend>
-						<div class="input-grid" style="grid-template-columns: auto auto 1fr;">
-							<p>Sync every</p><input aria-label="sync rate in seconds" class="w3-input w3-border" type="number" id="sync-rate" name="sync-rate" min="1" required><p>Second(s)</p>
+					<fieldset class="mt-6">
+						<legend class="font-medium mb-4">App Sync Frequency</legend>
+						<div class="grid grid-cols-3 gap-2 items-center">
+							<p class="col-span-1">Sync every</p>
+							<input aria-label="sync rate in seconds" class="col-span-1 border border-gray-300 rounded-md p-2" type="number" id="sync-rate" name="sync-rate" min="1" required>
+							<p class="col-span-1">Second(s)</p>
 						</div>
 					</fieldset>
 				</section>
-				<section class="w3-card w3-padding">
-					<h3>Search Settings</h3>
+
+				<!-- Search Settings -->
+				<section class="bg-white shadow-md rounded-md p-4 mb-6">
+					<h3 class="text-lg font-semibold mb-4">Search Settings</h3>
 					<fieldset>
-						<legend>Instance Search Criteria</legend>
-						<label><input class="w3-radio" type="radio" id="search-exact" name="search-criteria" value="exact" required>Exact Match</label>
-						<p>Sorts by exact query match in instance name.</p>
-						<label><input class="w3-radio" type="radio" id="search-fuzzy" name="search-criteria" value="fuzzy" required>Fuzzy Match</label>
-						<p>Sorts by best matching to worst matching.</p>
+						<legend class="font-medium mb-6">Instance Search Criteria</legend>
+						<label class="flex items-center gap-2 mb-1">
+							<input class="h-5 w-5 border-gray-300 rounded" type="radio" id="search-exact" name="search-criteria" value="exact" required>
+							<span>Exact Match</span>
+						</label>
+						<p class="text-sm text-gray-600">Sorts by exact query match in instance name.</p>
+						<label class="flex items-center gap-2 mb-1">
+							<input class="h-5 w-5 border-gray-300 rounded" type="radio" id="search-fuzzy" name="search-criteria" value="fuzzy" required>
+							<span>Fuzzy Match</span>
+						</label>
+						<p class="text-sm text-gray-600">Sorts by best matching to worst matching.</p>
 					</fieldset>
 				</section>
-				<section class="w3-card w3-padding">
-					<h3>Appearance</h3>
+
+				<!-- Appearance Settings -->
+				<section class="bg-white shadow-md rounded-md p-4 mb-6">
+					<h3 class="text-lg font-semibold mb-4">Appearance</h3>
 					<fieldset>
-						<legend>Default Theme</legend>
-						<label>Theme<select class="w3-select w3-border" id="appearance-theme" name="appearance-theme" style="width: fit-content; padding-right: 24px;">
+						<legend class="font-medium mb-4">Default Theme</legend>
+						<label class="flex items-center gap-4">
+							<span>Theme</span>
+							<select class="border border-gray-300 rounded-md p-2" id="appearance-theme" name="appearance-theme">
 								<option value="auto">Auto</option>
 								<option value="dark">Dark</option>
 								<option value="light">Light</option>
@@ -88,8 +96,10 @@
 						</label>
 					</fieldset>
 				</section>
-				<div class="w3-container w3-center" id="form-actions">
-					<button class="w3-button w3-margin" id="save" type="submit">SAVE</button>
+
+				<!-- Form Actions -->
+				<div class="text-center">
+					<button id="save" type="submit" class="bg-orange-600 text-white py-2 px-4 rounded-md hover:bg-orange-700">SAVE</button>
 				</div>
 			</form>
 		</main>

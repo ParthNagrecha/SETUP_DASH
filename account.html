@@ -5,72 +5,72 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Setup Boxs - dashboard</title>
 		<link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml">
-		<link rel="stylesheet" href="modules/w3.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/nav.css">
-		<link rel="stylesheet" href="css/form.css">
+		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="scripts/account.js" type="module"></script>
-		<script src="modules/chart.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		<style>
-			@media screen and (width >= 1264px){
+			@media (min-width: 1264px) {
 				#resource-container {
 					display: grid;
 					grid-template-columns: repeat(auto-fill, calc(100% / 6));
-					grid-gap: 0;
+					gap: 0;
 					justify-content: space-between;
 				}
 			}
-			@media screen and (width <= 1264px) and (width >= 680px) {
+			@media (max-width: 1264px) and (min-width: 680px) {
 				#resource-container {
 					display: grid;
 					grid-template-columns: repeat(auto-fill, 200px);
-					grid-gap: 0;
+					gap: 0;
 					justify-content: space-between;
 				}
 			}
-			@media screen and (width <= 680px) {
+			@media (max-width: 680px) {
 				#resource-container {
 					display: flex;
 					flex-direction: column;
 					gap: 0;
-					flex-wrap: nowrap;
 					justify-content: center;
 				}
 			}
 		</style>
 	</head>
-	<body>
-		<header>
-			<h1>Setup Boxs</h1>
-			<label for="navtoggle">&#9776;</label>
-			<input type="checkbox" id="navtoggle">
-			<nav id="navigation">
-				<a href="index.html">Instances</a>
-				<a href="account.html" aria-current="page">Account</a>
-				<a href="settings.html">Settings</a>
-				<a id="admin-link" aria-disabled="true" class="none">Admin</a>
-				<a href="login.html">Logout</a>
+	<body class="bg-gray-100 font-sans">
+		<header class="bg-orange-600 text-white p-4 flex items-center justify-between">
+			<h1 class="text-lg font-semibold">Setup Boxs</h1>
+			<label for="navtoggle" class="cursor-pointer text-2xl">&#9776;</label>
+			<input type="checkbox" id="navtoggle" class="hidden">
+			<nav id="navigation" class="hidden md:flex gap-4">
+				<a href="index.html" class="text-white hover:underline">Instances</a>
+				<a href="account.html" class="text-white hover:underline" aria-current="page">Account</a>
+				<a href="settings.html" class="text-white hover:underline">Settings</a>
+				<a id="admin-link" aria-disabled="true" class="text-white opacity-50 cursor-not-allowed">Admin</a>
+				<a href="login.html" class="text-white hover:underline">Logout</a>
 			</nav>
 		</header>
-		<main>
-			<h2>Account</h2>
-			<section class="w3-card w3-padding">
-				<h3>Account Details</h3>
-				<p id="username">Username:</p>
-				<p id="pool">Pools:</p>
-				<p id="vmid">VMID Range:</p>
+		<main class="p-6">
+			<h2 class="text-xl font-bold mb-6">Account</h2>
+
+			<!-- Account Details -->
+			<section class="bg-white shadow-md rounded-md p-4 mb-6">
+				<h3 class="text-lg font-semibold mb-4">Account Details</h3>
+				<p id="username" class="mb-2">Username:</p>
+				<p id="pool" class="mb-2">Pools:</p>
+				<p id="vmid" class="mb-2">VMID Range:</p>
 				<p id="nodes">Nodes:</p>
 			</section>
-			<section class="w3-card w3-padding">
-				<div class="flex row nowrap">
-					<h3>Password</h3>
-					<button class="w3-button w3-margin" id="change-password">Change Password</button>
-				</div>	
+
+			<!-- Password Section -->
+			<section class="bg-white shadow-md rounded-md p-4 mb-6">
+				<div class="flex items-center justify-between">
+					<h3 class="text-lg font-semibold">Password</h3>
+					<button class="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700" id="change-password">Change Password</button>
+				</div>
 			</section>
-			<section class="w3-card w3-padding">
-				<h3>Cluster Resources</h3>
+
+			<!-- Cluster Resources -->
+			<section class="bg-white shadow-md rounded-md p-4 mb-6">
+				<h3 class="text-lg font-semibold mb-4">Cluster Resources</h3>
 				<div id="resource-container"></div>
 			</section>
 		</main>

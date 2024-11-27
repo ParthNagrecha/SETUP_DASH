@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen">
+  <!-- Login Container -->
+  <div class="bg-gray-200 rounded-lg shadow-md p-8 w-80">
+    <!-- Logo -->
+    <div class="flex justify-center mb-4">
+      <img src="Logo.png" alt="Logo" class="w-12px h-12">
+    </div>
+    <!-- Title -->
+    <h2 class="text-center text-orange-600 font-bold text-xl mb-6">User Login</h2>
+    <!-- Form -->
+    <form>
+      <!-- Username -->
+      <div class="mb-4">
+        <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Email/Username</label>
+        <input type="text" id="username" name="username" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Email/Username">
+      </div>
+      <!-- Password -->
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+        <input type="password" id="password" name="password" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500" placeholder="Password">
+      </div>
+      <!-- Realm -->
+      <div class="mb-6">
+        <label for="realm" class="block text-sm font-medium text-gray-700 mb-1">Realm</label>
+        <select id="realm" name="realm" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+          <option value="">Select Realm</option>
+        </select>
+      </div>
+      <!-- Login Button -->
+      <div class="text-center">
+        <button type="submit" class="bg-orange-500 text-white w-full py-2 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500">Login</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

@@ -5,60 +5,73 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Setup Boxs - dashboard</title>
 		<link rel="icon" href="images/favicon.svg" sizes="any" type="image/svg+xml">
-		<link rel="stylesheet" href="modules/w3.css">
-		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-		<link rel="stylesheet" href="css/style.css">
-		<link rel="stylesheet" href="css/nav.css">
+		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="scripts/admin.js" type="module"></script>
 	</head>
-	<body>
-		<header>
-			<h1>Setup Boxs</h1>
-			<label for="navtoggle">&#9776;</label>
-			<input type="checkbox" id="navtoggle">
-			<nav id="navigation">
-				<a href="index.html">Instances</a>
-				<a href="account.html">Account</a>
-				<a href="settings.html">Settings</a>
-				<a id="admin-link" href="admin.html" aria-current="page">Admin</a>
-				<a href="login.html">Logout</a>
+	<body class="bg-gray-100 font-sans">
+		<header class="bg-orange-600 text-white p-4 flex items-center justify-between">
+			<h1 class="text-lg font-semibold">Setup Boxs</h1>
+			<label for="navtoggle" class="cursor-pointer text-2xl">&#9776;</label>
+			<input type="checkbox" id="navtoggle" class="hidden">
+			<nav id="navigation" class="hidden md:flex gap-4">
+				<a href="index.html" class="hover:underline">Instances</a>
+				<a href="account.html" class="hover:underline">Account</a>
+				<a href="settings.html" class="hover:underline">Settings</a>
+				<a id="admin-link" href="admin.html" aria-current="page" class="hover:underline">Admin</a>
+				<a href="login.html" class="hover:underline">Logout</a>
 			</nav>
 		</header>
-		<main>
-			<h2>Admin</h2>
-			<section class="w3-card w3-padding">
-				<div class="flex row nowrap" style="margin-top: 1em; justify-content: space-between;">
-					<h3>Users</h3>
-					<button type="button" id="user-add" class="w3-button" aria-label="Create New User">
-						<span class="large" style="margin: 0;">Create User</span>
-						<svg class="small" style="height: 1lh; width: 1lh;" role="img" aria-label="Create New User"><use href="images/actions/user/add.svg#symb"></use></svg>
+		<main class="p-6">
+			<h2 class="text-xl font-bold mb-6">Admin</h2>
+
+			<!-- Users Section -->
+			<section class="bg-white shadow-md rounded-md p-4 mb-6">
+				<div class="flex items-center justify-between mb-4">
+					<h3 class="text-lg font-semibold">Users</h3>
+					<button type="button" id="user-add" class="flex items-center gap-2 bg-orange-600 text-white py-2 px-4 rounded-md hover:bg-orange-700" aria-label="Create New User">
+						<span>Create User</span>
+						<svg class="w-5 h-5" role="img" aria-label="Create New User">
+							<use href="images/actions/user/add.svg#symb"></use>
+						</svg>
 					</button>
 				</div>
 				<div>
-					<div class="w3-row" style="border-bottom: 1px solid;">
-						<p class="w3-col l4 m4 s6">User</p>
-						<p class="w3-col l4 m4 w3-hide-small">Groups</p>
-						<p class="w3-col l2 w3-hide-medium w3-hide-small">Admin</p>
-						<p class="w3-col l2 m4 s6">Actions</p>
+					<!-- Users Table Header -->
+					<div class="grid grid-cols-4 md:grid-cols-6 border-b border-gray-300 pb-2 mb-2 text-sm font-semibold text-gray-700">
+						<p class="col-span-2">User</p>
+						<p class="col-span-2 hidden md:block">Groups</p>
+						<p class="col-span-1 hidden lg:block">Admin</p>
+						<p class="col-span-2 md:col-span-1">Actions</p>
 					</div>
-					<div id="users-container"></div>
+					<!-- Users Container -->
+					<div id="users-container" class="divide-y divide-gray-300">
+						<!-- User rows dynamically added -->
+					</div>
 				</div>
 			</section>
-			<section class="w3-card w3-padding">
-				<div class="flex row nowrap" style="margin-top: 1em; justify-content: space-between;">
-					<h3>Groups</h3>
-					<button type="button" id="group-add" class="w3-button" aria-label="Create New Group">
-						<span class="large" style="margin: 0;">Create Group</span>
-						<svg class="small" style="height: 1lh; width: 1lh;" role="img" aria-label="Create New Group"><use href="images/actions/group/add.svg#symb"></use></svg>
+
+			<!-- Groups Section -->
+			<section class="bg-white shadow-md rounded-md p-4">
+				<div class="flex items-center justify-between mb-4">
+					<h3 class="text-lg font-semibold">Groups</h3>
+					<button type="button" id="group-add" class="flex items-center gap-2 bg-orange-600 text-white py-2 px-4 rounded-md hover:bg-orange-700" aria-label="Create New Group">
+						<span>Create Group</span>
+						<svg class="w-5 h-5" role="img" aria-label="Create New Group">
+							<use href="images/actions/group/add.svg#symb"></use>
+						</svg>
 					</button>
 				</div>
 				<div>
-					<div class="w3-row" style="border-bottom: 1px solid;">
-						<p class="w3-col l4 m4 s6">Group</p>
-						<p class="w3-col l6 m4 w3-hide-small">Members</p>
-						<p class="w3-col l2 m4 s6">Actions</p>
+					<!-- Groups Table Header -->
+					<div class="grid grid-cols-4 md:grid-cols-6 border-b border-gray-300 pb-2 mb-2 text-sm font-semibold text-gray-700">
+						<p class="col-span-2">Group</p>
+						<p class="col-span-2 hidden md:block">Members</p>
+						<p class="col-span-2 md:col-span-1">Actions</p>
 					</div>
-					<div id="groups-container"></div>
+					<!-- Groups Container -->
+					<div id="groups-container" class="divide-y divide-gray-300">
+						<!-- Group rows dynamically added -->
+					</div>
 				</div>
 			</section>
 		</main>
